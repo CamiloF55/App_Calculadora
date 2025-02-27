@@ -5,8 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tvTemp"
@@ -15,7 +16,6 @@
         android:background="@color/buttonBorder"
         android:gravity="end"
         android:padding="10dp"
-        android:text="0"
         android:textAlignment="textEnd"
         android:textColor="#AFAEAE"
         android:textSize="34sp" />
@@ -27,7 +27,6 @@
         android:background="@color/buttonBorder"
         android:gravity="end"
         android:padding="10dp"
-        android:text="0"
         android:textAlignment="textEnd"
         android:textColor="#F6F3F3"
         android:textSize="60sp" />
@@ -35,5 +34,5 @@
     <include
         layout="@layout/botones_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 </LinearLayout>
