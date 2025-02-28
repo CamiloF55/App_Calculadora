@@ -38,7 +38,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun cambiarOperador(b: View) {
+    fun cambiarOperador(b: View){
+        if(tvTemp.text.isNotEmpty() || primerNumero.toString()!="NaN"){
+
         calcular()
         val boton: Button = b as Button
         if (boton.text.toString().trim() == "÷") {
@@ -49,30 +51,79 @@ class MainActivity : AppCompatActivity() {
             operacionActual = boton.text.toString().trim()
         }
 
-        tvResult.text = formatoDecimal.format(primerNumero) + operacionActual
-        tvTemp.text = ""
+        if(tvTemp.text.toString().isEmpty()){
+            tvTemp.text=tvResult.text
+        }
+
+            tvResult.text=formatoDecimal.format(primerNumero)+operacionActual
+            tvTemp.text=""
+        }
+
     }
 
     fun calcular(){
-        if (primerNumero.toString()!="NaN"){
-            segundoNumero = tvTemp.text.toString().toDouble()
-            tvTemp.text=""
+        try {
+            if (primerNumero.toString()!="NaN"){
+                if (tvTemp.text.toString().isEmpty()){
+                    tvTemp.text = tvResult.text.toString()
 
-            when(operacionActual){
-                "+"-> primerNumero = (primerNumero+segundoNumero)
-                "-"-> primerNumero = (primerNumero-segundoNumero)
-                "*"-> primerNumero = (primerNumero*segundoNumero)
-                "/"-> primerNumero = (primerNumero/segundoNumero)
-                "%"-> primerNumero = (primerNumero%segundoNumero)
+                }
+
+                segundoNumero = tvTemp.text.toString().toDouble()
+                tvTemp.text=""
+
+                when(operacionActual){
+                    "+"-> primerNumero = (primerNumero+segundoNumero)
+                    "-"-> primerNumero = (primerNumero-segundoNumero)
+                    "*"-> primerNumero = (primerNumero*segundoNumero)
+                    "/"-> primerNumero = (primerNumero/segundoNumero)
+                    "%"-> primerNumero = (primerNumero%segundoNumero)
+                }
+            }else{
+
+                primerNumero = tvTemp.text.toString().toDouble()
             }
-        }else{
+        } catch(e:Exception){
 
-            primerNumero = tvTemp.text.toString().toDouble()
         }
+
     }
 
     fun seleccionarNumero(b: View){
         val boton:Button = b as Button
         tvTemp.text = tvTemp.text.toString() + boton.text.toString()
+    }
+
+    fun igual(b: View){
+        calcular()
+        tvResult.text = formatoDecimal.format(primerNumero)
+        //primerNumero = Double.NaN
+        operacionActual = " "
+    }
+
+
+    fun borrar(b: View) {
+        val boton: Button = b as Button
+        if (boton.text.toString().trim() == "C") {
+
+            if(tvTemp.text.toString().isNotEmpty()){
+               var datosActuales:CharSequence = tvTemp.text.toString() as CharSequence
+                tvTemp.text = datosActuales.subSequence(0,datosActuales.length-1)
+            }else{
+
+                primerNumero = Double.NaN
+                segundoNumero = Double.NaN
+                tvTemp.text = ""
+                tvResult.text = ""
+            }
+
+        }else if (boton.text.toString().trim() == "CA") {
+            primerNumero = Double.NaN
+            segundoNumero = Double.NaN
+            tvTemp.text = ""
+            tvResult.text = ""
+
+        }
+
     }
 }

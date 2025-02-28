@@ -23,6 +23,7 @@
             android:layout_margin="3dp"
 
             android:backgroundTint="#4B4A4A"
+            android:onClick="borrar"
             android:text="CA"
             android:textColor="#D95B33"
             android:textSize="24sp"
@@ -38,6 +39,7 @@
             android:layout_height="100dp"
             android:layout_margin="3dp"
             android:backgroundTint="#4B4A4A"
+            android:onClick="borrar"
             android:text="C"
             android:textColor="#D95B33"
             android:textSize="24sp"
@@ -335,6 +337,7 @@
             android:layout_height="100dp"
             android:layout_margin="3dp"
             android:backgroundTint="#4B4A4A"
+            android:onClick="igual"
             android:text="="
             android:textColor="#D95B33"
             android:textSize="24sp"
