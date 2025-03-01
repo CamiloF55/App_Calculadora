@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         val boton: Button = b as Button
         if (boton.text.toString().trim() == "÷") {
             operacionActual = "/"
-        } else if (boton.text.toString().trim() == "x") {
+        } else if (boton.text.toString().trim() == "×") {
             operacionActual = "*"
         } else {
             operacionActual = boton.text.toString().trim()
@@ -55,7 +55,8 @@ class MainActivity : AppCompatActivity() {
             tvTemp.text=tvResult.text
         }
 
-            tvResult.text=formatoDecimal.format(primerNumero)+operacionActual
+            tvResult.text = String.format("%s %s", formatoDecimal.format(primerNumero), operacionActual)
+
             tvTemp.text=""
         }
 
@@ -82,6 +83,7 @@ class MainActivity : AppCompatActivity() {
             }else{
 
                 primerNumero = tvTemp.text.toString().toDouble()
+
             }
         } catch(e:Exception){
 
